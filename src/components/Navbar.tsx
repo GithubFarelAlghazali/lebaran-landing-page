@@ -54,7 +54,6 @@ export default function Navbar() {
 						<ShoppingBag size={20} />
 						{/* {cartCount > 0 && <span className="absolute top-0 right-0 bg-red-500 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">{cartCount}</span>} */}
 					</button>
-					<button className="bg-emerald-600 text-white px-5 py-2 rounded-full font-medium hover:bg-emerald-700 transition shadow-lg shadow-emerald-200">Login</button>
 				</div>
 
 				{/* Mobile Menu Button */}
@@ -65,7 +64,7 @@ export default function Navbar() {
 
 			{/* Mobile Menu Dropdown */}
 			{isMenuOpen && (
-				<div className="md:hidden bg-white shadow-xl absolute top-full left-0 w-full p-6 flex flex-col space-y-4 border-t">
+				<div className="md:hidden bg-slate-50 shadow-xl absolute top-full left-0 w-full p-6 flex flex-col space-y-4 border-t">
 					<a href="#home" className="text-gray-700 font-medium" onClick={() => setIsMenuOpen(false)}>
 						Beranda
 					</a>
@@ -78,8 +77,6 @@ export default function Navbar() {
 					<a href="#contact" className="text-gray-700 font-medium" onClick={() => setIsMenuOpen(false)}>
 						Kontak
 					</a>
-					<hr />
-					<button className="bg-emerald-600 text-white py-3 rounded-lg w-full font-bold">Login / Daftar</button>
 				</div>
 			)}
 		</nav>

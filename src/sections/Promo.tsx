@@ -17,8 +17,8 @@ export default function Promo() {
 								<button className="bg-yellow-500 text-emerald-900 px-8 py-3 rounded-full font-bold hover:bg-yellow-400 transition">Pesan Hampers</button>
 							</div>
 						</div>
-						<div className="h-64 md:h-full min-h-100">
-							<img src="https://images.unsplash.com/photo-1549590143-d586bc341c4d?auto=format&fit=crop&w=800&q=80" alt="Hampers Lebaran" className="w-full h-full object-cover md:rounded-l-full border-l-8 border-yellow-500/20" />
+						<div className="flex justify-end items-center h-full">
+							<img src="/hampers/hampers2.webp" alt="Hampers Lebaran" className="aspect-square h-100 object-cover md:rounded-l-full border-l-8 border-yellow-500/20" />
 						</div>
 					</div>
 				</div>

@@ -42,7 +42,7 @@ export default function Hero() {
 					<div className="relative z-10 transform hover:scale-105 transition duration-500">
 						{/* Main Hero Image Frame */}
 						<div className="bg-white p-4 rounded-3xl shadow-2xl rotate-2">
-							<img src="https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?auto=format&fit=crop&w=800&q=80" alt="Kue Kering Lebaran" className="rounded-2xl w-full h-[400px] object-cover" />
+							<img src="/bg.jfif" alt="Kue Kering Lebaran" className="rounded-2xl w-full h-[400px] object-cover" />
 							<div className="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-xl flex items-center gap-4 animate-bounce-slow">
 								<div className="bg-yellow-100 p-3 rounded-full text-yellow-600">
 									<Star fill="currentColor" size={24} />
@@ -59,3 +59,5 @@ export default function Hero() {
 		</header>
 	);
 }
+
+// https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?auto=format&fit=crop&w=800&q=80
