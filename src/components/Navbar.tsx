@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { ShoppingBag, Menu, X, Search } from "lucide-react";
+import { ShoppingCart, Menu, X, Search } from "lucide-react";
 
 export default function Navbar() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -51,7 +51,7 @@ export default function Navbar() {
 						<Search size={20} />
 					</button>
 					<button className="relative p-2 hover:bg-emerald-50 rounded-full transition text-gray-600">
-						<ShoppingBag size={20} />
+						<ShoppingCart size={20} />
 						{/* {cartCount > 0 && <span className="absolute top-0 right-0 bg-red-500 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">{cartCount}</span>} */}
 					</button>
 				</div>
