@@ -2,19 +2,25 @@
 
 import { useParams } from "next/navigation";
 import { products } from "@/data";
-
+import Link from "next/link";
 import formatRp from "@/helper/formatRp";
 import { useCart } from "@/context/CartContext";
 
 export default function DetailProduct() {
 	const { id } = useParams();
-
-	const { addToCart, items } = useCart();
-
+	const { addToCart, decreaseQty, items } = useCart();
+	const thisItem = items.find((item) => item.id === Number(id));
 	const product = products.find((prod) => prod.id === Number(id));
+
 	const handleAddToCart = () => {
 		if (product) {
 			addToCart(product);
+		}
+	};
+
+	const handleDecreaseQty = () => {
+		if (product) {
+			decreaseQty(product.id);
 		}
 	};
 
@@ -42,12 +48,27 @@ export default function DetailProduct() {
 						{product.category && <span className="">{product.category}</span>}
 					</div>
 					<h2 className="md:text-5xl font-black text-3xl">{formatRp(product.price)}</h2>
-					<div className="lg:absolute md:bottom-10 mt-5 flex md:gap-5 gap-2 *:md:p-5 *:p-3 *:rounded-2xl text-sm md:text-base">
-						<button className="bg-emerald-900 text-white">Beli Sekarang</button>
-						<button className="border border-emerald-900 text-slate-900" onClick={handleAddToCart}>
-							Tambah ke Keranjang
-						</button>
-					</div>
+					{thisItem?.qty ? (
+						<div className="lg:absolute md:bottom-10 mt-5 grid grid-cols-3 grid-rows-2 md:gap-5 gap-2 *:md:p-5 *:p-3 *:rounded-2xl text-sm md:text-base md:w-1/2 h-32 text-center *:flex *:items-center *:justify-center">
+							<button className="bg-emerald-900 text-white cursor-pointer" onClick={handleDecreaseQty}>
+								-
+							</button>
+							<button className="outline-1 outline-emerald-900">{thisItem?.qty}</button>
+							<button className="bg-emerald-900 text-white cursor-pointer" onClick={handleAddToCart}>
+								+
+							</button>
+							<Link href="/cart" className="bg-emerald-800 text-white rounded-2xl col-span-3 ">
+								Lihat Keranjang
+							</Link>
+						</div>
+					) : (
+						<div className="lg:absolute md:bottom-10 mt-5 flex md:gap-5 gap-2 *:md:p-5 *:p-3 *:rounded-2xl text-sm md:text-base">
+							<button className="bg-emerald-900 text-white">Beli Sekarang</button>
+							<button className="border border-emerald-900 text-slate-900" onClick={handleAddToCart}>
+								Tambah ke Keranjang
+							</button>
+						</div>
+					)}
 				</div>
 			</main>
 		</>

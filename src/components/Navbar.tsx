@@ -2,10 +2,12 @@
 import { useState, useEffect } from "react";
 import { ShoppingCart, Menu, X, Search } from "lucide-react";
 import Link from "next/link";
+import { useCart } from "@/context/CartContext";
 
 export default function Navbar() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const [scrolled, setScrolled] = useState(false);
+	const { totalQty } = useCart();
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -20,7 +22,7 @@ export default function Navbar() {
 	}, []);
 
 	return (
-		<nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? "bg-white shadow-md py-3" : "bg-transparent py-5"}`}>
+		<nav className={`fixed w-full z-50 transition-all duration-300 bg-white ${scrolled ? " shadow-md py-3" : "bg-transparent py-5"}`}>
 			<div className="container mx-auto px-6 flex justify-between items-center">
 				{/* Logo */}
 				<Link href={"/"} className="flex items-center gap-2">
@@ -52,7 +54,7 @@ export default function Navbar() {
 					</button>
 					<Link href={"/cart"} className="relative p-2 hover:bg-emerald-50 rounded-full transition text-gray-600">
 						<ShoppingCart size={20} />
-						{/* {cartCount > 0 && <span className="absolute top-0 right-0 bg-red-500 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">{cartCount}</span>} */}
+						{totalQty > 0 && <span className="absolute top-0 right-0 bg-red-500 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">{totalQty}</span>}
 					</Link>
 				</div>
 
