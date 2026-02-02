@@ -2,7 +2,7 @@ export const products = [
 	{
 		id: 1,
 		name: "Nastar Wisman Premium",
-		price: "Rp 145.000",
+		price: 145000,
 		rating: 4.9,
 		category: "Best Seller",
 		image: "/products/nastar.webp",
@@ -12,7 +12,7 @@ export const products = [
 	{
 		id: 2,
 		name: "Kastengel Keju Edam",
-		price: "Rp 155.000",
+		price: 155000,
 		rating: 4.8,
 		category: "Premium",
 		image: "/products/kastangel.webp",
@@ -22,7 +22,7 @@ export const products = [
 	{
 		id: 3,
 		name: "Kue Kacang Mete",
-		price: "Rp 135.000",
+		price: 135000,
 		rating: 4.7,
 		category: "Best Seller",
 		image: "/products/kacang-mete.webp",
@@ -32,7 +32,7 @@ export const products = [
 	{
 		id: 4,
 		name: "Choco Chips",
-		price: "Rp 125.000",
+		price: 125000,
 		rating: 4.5,
 		category: "Best Seller",
 		image: "/products/choco-chips.webp",
@@ -42,7 +42,7 @@ export const products = [
 	{
 		id: 5,
 		name: "Kembang Goyang Harum",
-		price: "Rp 100.000",
+		price: 100000,
 		rating: 4.8,
 		category: "Best Seller",
 		image: "/products/kembang-goyang.webp",
@@ -52,7 +52,7 @@ export const products = [
 	{
 		id: 6,
 		name: "Kue Batang Cokelat",
-		price: "Rp 135.000",
+		price: 135000,
 		rating: 4.7,
 		category: "Premium",
 		image: "/products/kering-cokelat-batang.webp",
@@ -62,7 +62,7 @@ export const products = [
 	{
 		id: 7,
 		name: "Kuping Gajah",
-		price: "Rp 90.000",
+		price: 90000,
 		rating: 4.7,
 		category: "Best Seller",
 		image: "/products/kuping-gajah.webp",
@@ -72,7 +72,7 @@ export const products = [
 	{
 		id: 8,
 		name: "Tumbrint Cokelat",
-		price: "Rp 150.000",
+		price: 150000,
 		rating: 4.7,
 		category: "Premium",
 		image: "/products/tumbrint-cokelat.webp",
@@ -82,7 +82,7 @@ export const products = [
 	{
 		id: 9,
 		name: "Hampers Berkah 1",
-		price: "Rp 400.000",
+		price: 400000,
 		rating: 4.7,
 		category: "Hampers",
 		image: "/hampers/hampers2.webp",
@@ -92,7 +92,7 @@ export const products = [
 	{
 		id: 10,
 		name: "Hampers Berkah 2",
-		price: "Rp 400.000",
+		price: 400000,
 		rating: 4.7,
 		category: "Hampers",
 		image: "/hampers/hampers3.webp",

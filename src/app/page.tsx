@@ -1,4 +1,3 @@
-import Navbar from "@/components/Navbar";
 import Hero from "@/sections/Hero";
 import Features from "@/sections/Features";
 import Catalog from "@/sections/Catalog";
@@ -9,7 +8,6 @@ import Footer from "@/sections/Footer";
 export default function Home() {
 	return (
 		<div className="font-sans text-gray-800 bg-orange-50/30 min-h-screen">
-			<Navbar />
 			<Hero />
 			<Features />
 			<Catalog />

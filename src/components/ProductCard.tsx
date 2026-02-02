@@ -1,7 +1,8 @@
 import { Heart } from "lucide-react";
 import Link from "next/link";
+import formatRp from "@/helper/formatRp";
 
-export default function ProductCard({ id, image, tag, name, desc, price }: { id: number; image: string; tag: any; name: string; desc: string; price: string }) {
+export default function ProductCard({ id, image, tag, name, desc, price }: { id: number; image: string; tag: any; name: string; desc: string; price: number }) {
 	return (
 		<Link href={`/product/${id}`} className="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition duration-300 border border-gray-100 overflow-hidden flex flex-col">
 			<div className="relative h-64 overflow-hidden">
@@ -20,7 +21,7 @@ export default function ProductCard({ id, image, tag, name, desc, price }: { id:
 
 				<div className="mt-auto flex items-center justify-between">
 					<div>
-						<p className="font-bold text-xl text-emerald-700">{price}</p>
+						<p className="font-bold text-xl text-emerald-700">{formatRp(price)}</p>
 					</div>
 				</div>
 			</div>
