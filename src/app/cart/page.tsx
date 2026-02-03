@@ -11,7 +11,7 @@ export default function CartPage() {
 
 	const number = "6283831071092";
 
-	const handleCreateOrder = (e: React.FormEvent) => {
+	const handleCreateOrder = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		const form = new FormData(e.currentTarget);
 		const nama = form.get("name") as string;
@@ -51,8 +51,9 @@ export default function CartPage() {
 									placeholder="Alamat lengkap (Jalan, No. Rumah, Kecamatan...)"
 								></textarea>
 							</div>
-							<button type="submit" className="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-bold py-3 rounded-lg transition duration-200 shadow-md">
-								Pesan Sekarang
+							<button type="submit" className="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-bold py-3 rounded-lg transition duration-200 shadow-md cursor-pointer flex justify-center items-center gap-2">
+								Pesan via WhatsApp
+								<FaWhatsapp size={20} />
 							</button>
 						</form>
 					</div>
