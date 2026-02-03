@@ -2,40 +2,61 @@
 import { useCart } from "@/context/CartContext";
 import formatRp from "@/helper/formatRp";
 import Link from "next/link";
+import greetingTime from "@/helper/greetingTime";
 
 export default function CartPage() {
-	const { items, totalPrice } = useCart();
+	const { items, totalPrice, totalQty } = useCart();
+
+	const number = "6283831071092";
+
+	const handleCreateOrder = (e: React.FormEvent) => {
+		e.preventDefault();
+		const form = new FormData(e.currentTarget);
+		const nama = form.get("name") as string;
+		const alamat = form.get("alamat") as string;
+		const salam = greetingTime();
+
+		const message = `${greetingTime()} kak, kenalin aku ${nama} mau pesan produk dari KueRaya dengan rincian berikut: ${items.map((item) => `\n- ${item.name} - ${item.qty} buah`)}\nTotal jumlah barang: ${totalQty} buah\nTotal harga: ${formatRp(totalPrice)}\nKirim ke alamat ini: ${alamat}`;
+		const formattedNumber = number.replace(/\D/g, "");
+
+		const encodedMessage = encodeURIComponent(message);
+
+		const url = `https://wa.me/${formattedNumber}?text=${encodedMessage}`;
+
+		window.open(url, "_blank");
+	};
 
 	return (
 		<>
-			<main className="md:px-16 lg:pt-20 flex lg:flex-row flex-col relative justify-between">
-				<div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-7xl mx-auto mt-20">
-					<div className="w-full">
+			<main className="px-5 lg:pt-20 pb-10 flex lg:flex-row flex-col relative justify-between">
+				<div className="flex lg:flex-row flex-col gap-10 max-w-6xl mx-auto mt-20">
+					<div className="md:w-1/2 order-2 md:order-1">
 						<h2 className="text-2xl font-bold mb-6 text-slate-800 border-b pb-2">Data Pemesan</h2>
-						<form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+						<form onSubmit={(e) => handleCreateOrder(e)} className="space-y-4">
 							<div>
 								<label className="block text-sm font-medium text-slate-700 mb-1">Nama Lengkap</label>
-								<input type="text" className="w-full p-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600" placeholder="Masukkan nama anda" />
-							</div>
-
-							<div>
-								<label className="block text-sm font-medium text-slate-700 mb-1">Nomor Telepon / WhatsApp</label>
-								<input type="tel" className="w-full p-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600" placeholder="0812xxxx" />
+								<input required type="text" id="name" name="name" className="w-full p-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600" placeholder="Masukkan nama anda" />
 							</div>
 
 							<div>
 								<label className="block text-sm font-medium text-slate-700 mb-1">Alamat Pengiriman</label>
 								<textarea
+									required
 									rows={4}
+									id="alamat"
+									name="alamat"
 									className="w-full p-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600 resize-none"
 									placeholder="Alamat lengkap (Jalan, No. Rumah, Kecamatan...)"
 								></textarea>
 							</div>
+							<button type="submit" className="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-bold py-3 rounded-lg transition duration-200 shadow-md">
+								Pesan Sekarang
+							</button>
 						</form>
 					</div>
 
-					<div className="w-full">
-						<div className="bg-slate-50 p-6 rounded-xl border border-slate-100 sticky top-28">
+					<div className="md:w-1/2 order-1 md:order-2">
+						<div className="bg-slate-50 md:p-6 rounded-xl border border-slate-100 flex justify-center flex-col">
 							{items.length > 0 ? (
 								<>
 									<h2 className="text-2xl font-bold mb-6 text-slate-800 border-b pb-2">Ringkasan Pesanan</h2>
@@ -63,11 +84,10 @@ export default function CartPage() {
 											<span className="text-lg font-medium text-slate-600">Total Harga</span>
 											<span className="text-2xl font-bold text-emerald-700">{formatRp(totalPrice)}</span>
 										</div>
-										<button className="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-bold py-3 rounded-lg transition duration-200 shadow-md">Pesan Sekarang</button>
 									</div>
 								</>
 							) : (
-								<Link className="bg-white p-5 rounded-xl  outline-1 outline-black/15" href="/#catalog">
+								<Link className="w-full p-2 md:p-5 rounded-xl  outline-1 outline-black/15" href="/#catalog ">
 									Keranjang masih kosong, yuk cek katalog
 								</Link>
 							)}
