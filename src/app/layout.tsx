@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
+import { ModalProvider } from "@/context/ModalContext";
 import Navbar from "@/components/Navbar";
 import CartButton from "@/components/CartButton";
 
@@ -21,9 +22,11 @@ export default function RootLayout({
 		<html lang="id" className="scroll-smooth">
 			<body className={poppins.className}>
 				<CartProvider>
-					<Navbar />
-					<CartButton />
-					{children}
+					<ModalProvider>
+						<Navbar />
+						<CartButton />
+						{children}
+					</ModalProvider>
 				</CartProvider>
 			</body>
 		</html>

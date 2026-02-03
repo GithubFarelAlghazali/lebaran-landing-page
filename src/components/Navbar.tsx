@@ -66,7 +66,7 @@ export default function Navbar() {
 
 			{/* Mobile Menu Dropdown */}
 			{isMenuOpen && (
-				<div className="md:hidden bg-slate-50 shadow-xl absolute top-full left-0 w-full p-6 flex flex-col space-y-4 border-t">
+				<div className="md:hidden bg-slate-50 shadow-xl absolute top-full left-0 w-full p-6 flex flex-col space-y-4 ">
 					<Link href="/#home" className="text-gray-700 font-medium" onClick={() => setIsMenuOpen(false)}>
 						Beranda
 					</Link>

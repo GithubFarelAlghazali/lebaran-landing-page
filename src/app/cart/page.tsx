@@ -5,9 +5,12 @@ import Link from "next/link";
 import greetingTime from "@/helper/greetingTime";
 import { CircleMinus } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
+import Modal from "@/components/Modal";
+import { useModal } from "@/context/ModalContext";
 
 export default function CartPage() {
 	const { items, totalPrice, totalQty, clearCart, removeItem } = useCart();
+	const { showModal } = useModal();
 
 	const number = "6283831071092";
 
@@ -16,9 +19,8 @@ export default function CartPage() {
 		const form = new FormData(e.currentTarget);
 		const nama = form.get("name") as string;
 		const alamat = form.get("alamat") as string;
-		const salam = greetingTime();
 
-		const message = `${greetingTime()} kak, kenalin aku ${nama} mau pesan produk dari KueRaya dengan rincian berikut: ${items.map((item) => `\n- ${item.name} - ${item.qty} buah`)}\nTotal jumlah barang: ${totalQty} buah\nTotal harga: ${formatRp(totalPrice)}\nKirim ke alamat ini: ${alamat}\nAtas perhatiannya terimakasih kak`;
+		const message = `${greetingTime()} kak, kenalin aku ${nama} mau pesan produk dari KueRaya dengan rincian berikut:\n-------------- ${items.map((item) => `\n- ${item.name} - ${item.qty} buah`)}\n--------------\nTotal jumlah barang: ${totalQty} buah\nTotal harga: ${formatRp(totalPrice)}(belum termasuk ongkir)\nKirim ke alamat ini: ${alamat}\nAtas perhatiannya terimakasih kak`;
 		const formattedNumber = number.replace(/\D/g, "");
 
 		const encodedMessage = encodeURIComponent(message);
@@ -31,6 +33,7 @@ export default function CartPage() {
 	return (
 		<>
 			<main className="px-5 lg:pt-20 pb-10 flex lg:flex-row flex-col relative justify-between">
+				<Modal />
 				<div className="flex lg:flex-row flex-col gap-10 max-w-6xl mx-auto mt-20">
 					<div className="md:w-1/2 order-2 md:order-1">
 						<h2 className="text-2xl font-bold mb-6 text-slate-800 border-b pb-2">Data Pemesan</h2>
@@ -78,7 +81,12 @@ export default function CartPage() {
 															{item.qty} x {formatRp(item.price)}
 														</p>
 													</Link>
-													<button onClick={() => removeItem(item.id)}>
+													<button
+														onClick={() => {
+															removeItem(item.id);
+															showModal("Produk dihapus dari keranjang");
+														}}
+													>
 														<CircleMinus />
 													</button>
 												</div>
@@ -87,7 +95,7 @@ export default function CartPage() {
 									})}
 									<div className="border-t pt-4">
 										<div className="flex justify-between items-center mb-6">
-											<span className="text-lg font-medium text-slate-600">Total Harga</span>
+											<span className="text-lg font-medium text-slate-600">Total Harga(belum termasuk ongkir)</span>
 											<span className="text-2xl font-bold text-emerald-700">{formatRp(totalPrice)}</span>
 										</div>
 										<button className="-mt-3 p-5 bg-emerald-700 cursor-pointer text-white font-semibold rounded-md hover:bg-emerald-800 " onClick={clearCart}>

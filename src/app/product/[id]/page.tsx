@@ -6,10 +6,13 @@ import Link from "next/link";
 import formatRp from "@/helper/formatRp";
 import { useCart } from "@/context/CartContext";
 import { useRouter } from "next/navigation";
+import { useModal } from "@/context/ModalContext";
+import Modal from "@/components/Modal";
 
 export default function DetailProduct() {
 	const { id } = useParams();
 	const { addToCart, decreaseQty, items } = useCart();
+	const { showModal } = useModal();
 	const thisItem = items.find((item) => item.id === Number(id));
 	const product = products.find((prod) => prod.id === Number(id));
 	const router = useRouter();
@@ -17,12 +20,14 @@ export default function DetailProduct() {
 	const handleAddToCart = () => {
 		if (product) {
 			addToCart(product);
+			showModal("Produk ditambahkan ke keranjang");
 		}
 	};
 
 	const handleBuyNow = () => {
 		if (product) {
 			addToCart(product);
+			showModal("Produk ditambahkan ke keranjang");
 			router.push("/cart");
 		}
 	};
@@ -30,6 +35,12 @@ export default function DetailProduct() {
 	const handleDecreaseQty = () => {
 		if (product) {
 			decreaseQty(product.id);
+		}
+	};
+
+	const handleAddQty = () => {
+		if (product) {
+			addToCart(product);
 		}
 	};
 
@@ -45,7 +56,8 @@ export default function DetailProduct() {
 
 	return (
 		<>
-			<main className="md:px-16 lg:pt-20 flex lg:flex-row flex-col relative justify-between">
+			<main className=" md:px-16 lg:pt-20 flex lg:flex-row flex-col relative justify-between z-0">
+				<Modal />
 				<div className="lg:w-1/2 p-5 mt-20 lg:mt-0">
 					<img src={product.image} alt={product.name} className="w-[90%] rounded-2xl shadow-2xl -rotate-2 mx-auto aspect-square object-cover" />
 				</div>
@@ -63,7 +75,7 @@ export default function DetailProduct() {
 								-
 							</button>
 							<button className="outline-1 outline-emerald-900">{thisItem?.qty}</button>
-							<button className="bg-emerald-900 text-white cursor-pointer" onClick={handleAddToCart}>
+							<button className="bg-emerald-900 text-white cursor-pointer" onClick={handleAddQty}>
 								+
 							</button>
 							<Link href="/cart" className="bg-emerald-800 text-white rounded-2xl col-span-3 ">
