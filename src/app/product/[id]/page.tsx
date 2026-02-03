@@ -5,16 +5,25 @@ import { products } from "@/data";
 import Link from "next/link";
 import formatRp from "@/helper/formatRp";
 import { useCart } from "@/context/CartContext";
+import { useRouter } from "next/navigation";
 
 export default function DetailProduct() {
 	const { id } = useParams();
 	const { addToCart, decreaseQty, items } = useCart();
 	const thisItem = items.find((item) => item.id === Number(id));
 	const product = products.find((prod) => prod.id === Number(id));
+	const router = useRouter();
 
 	const handleAddToCart = () => {
 		if (product) {
 			addToCart(product);
+		}
+	};
+
+	const handleBuyNow = () => {
+		if (product) {
+			addToCart(product);
+			router.push("/cart");
 		}
 	};
 
@@ -63,7 +72,9 @@ export default function DetailProduct() {
 						</div>
 					) : (
 						<div className="lg:absolute md:bottom-10 mt-5 flex md:gap-5 gap-2 *:md:p-5 *:p-3 *:rounded-2xl text-sm md:text-base">
-							<button className="bg-emerald-900 text-white">Beli Sekarang</button>
+							<button className="bg-emerald-900 text-white" onClick={handleBuyNow}>
+								Beli Sekarang
+							</button>
 							<button className="border border-emerald-900 text-slate-900" onClick={handleAddToCart}>
 								Tambah ke Keranjang
 							</button>

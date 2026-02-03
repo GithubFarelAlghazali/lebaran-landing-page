@@ -3,9 +3,11 @@ import { useCart } from "@/context/CartContext";
 import formatRp from "@/helper/formatRp";
 import Link from "next/link";
 import greetingTime from "@/helper/greetingTime";
+import { CircleMinus } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 
 export default function CartPage() {
-	const { items, totalPrice, totalQty } = useCart();
+	const { items, totalPrice, totalQty, clearCart, removeItem } = useCart();
 
 	const number = "6283831071092";
 
@@ -16,7 +18,7 @@ export default function CartPage() {
 		const alamat = form.get("alamat") as string;
 		const salam = greetingTime();
 
-		const message = `${greetingTime()} kak, kenalin aku ${nama} mau pesan produk dari KueRaya dengan rincian berikut: ${items.map((item) => `\n- ${item.name} - ${item.qty} buah`)}\nTotal jumlah barang: ${totalQty} buah\nTotal harga: ${formatRp(totalPrice)}\nKirim ke alamat ini: ${alamat}`;
+		const message = `${greetingTime()} kak, kenalin aku ${nama} mau pesan produk dari KueRaya dengan rincian berikut: ${items.map((item) => `\n- ${item.name} - ${item.qty} buah`)}\nTotal jumlah barang: ${totalQty} buah\nTotal harga: ${formatRp(totalPrice)}\nKirim ke alamat ini: ${alamat}\nAtas perhatiannya terimakasih kak`;
 		const formattedNumber = number.replace(/\D/g, "");
 
 		const encodedMessage = encodeURIComponent(message);
@@ -63,20 +65,23 @@ export default function CartPage() {
 
 									{items.map((item, i) => {
 										return (
-											<Link href={`/product/${item.id}`} key={i} className="flex flex-col gap-4 mb-6 max-h-100 overflow-y-auto">
+											<div key={i} className="flex flex-col gap-4 mb-6 max-h-100 overflow-y-auto">
 												<div className="flex gap-4 items-center bg-white p-3 rounded-lg shadow-sm border border-slate-200">
 													<div className="h-16 w-16 bg-slate-200 rounded-md overflow-hidden shrink-0 flex items-center justify-center text-xs text-slate-400">
 														<img src={item.image} alt="" />
 													</div>
 
-													<div className="flex-1">
+													<Link href={`/product/${item.id}`} className="flex-1">
 														<h3 className="font-semibold text-slate-800">{item.name}</h3>
 														<p className="text-sm text-slate-500">
 															{item.qty} x {formatRp(item.price)}
 														</p>
-													</div>
+													</Link>
+													<button onClick={() => removeItem(item.id)}>
+														<CircleMinus />
+													</button>
 												</div>
-											</Link>
+											</div>
 										);
 									})}
 									<div className="border-t pt-4">
@@ -84,6 +89,9 @@ export default function CartPage() {
 											<span className="text-lg font-medium text-slate-600">Total Harga</span>
 											<span className="text-2xl font-bold text-emerald-700">{formatRp(totalPrice)}</span>
 										</div>
+										<button className="-mt-3 p-5 bg-emerald-700 cursor-pointer text-white font-semibold rounded-md hover:bg-emerald-800 " onClick={clearCart}>
+											Kosongkan Keranjang
+										</button>
 									</div>
 								</>
 							) : (

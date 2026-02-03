@@ -1,4 +1,5 @@
 import { Star, ChevronRight } from "lucide-react";
+import Link from "next/link";
 
 export default function Hero() {
 	return (
@@ -14,9 +15,12 @@ export default function Hero() {
 					<p className="text-lg text-gray-600 max-w-lg mx-auto lg:mx-0 leading-relaxed">Rayakan kemenangan dengan kelembutan kue kering premium. Dibuat dari bahan butter wisman asli dan resep warisan keluarga turun-temurun.</p>
 					<div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
 						<button className="bg-emerald-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-emerald-700 transition shadow-xl shadow-emerald-200 transform hover:-translate-y-1">Pesan Sekarang</button>
-						<button className="bg-white text-emerald-800 border-2 border-emerald-100 px-8 py-4 rounded-full font-bold text-lg hover:border-emerald-600 hover:text-emerald-600 transition flex items-center justify-center gap-2">
+						<Link
+							href={"/#catalog"}
+							className="bg-white text-emerald-800 border-2 border-emerald-100 px-8 py-4 rounded-full font-bold text-lg hover:border-emerald-600 hover:text-emerald-600 transition flex items-center justify-center gap-2"
+						>
 							Lihat Katalog <ChevronRight size={20} />
-						</button>
+						</Link>
 					</div>
 
 					{/* Trust Badges */}
