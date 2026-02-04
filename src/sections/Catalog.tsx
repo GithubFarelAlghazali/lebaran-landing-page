@@ -2,6 +2,8 @@
 import { useState } from "react";
 import ProductCard from "@/components/ProductCard";
 import { products } from "@/data";
+import { AnimatePresence } from "motion/react";
+import * as motion from "motion/react-client";
 
 export default function Catalog() {
 	const [activeCategory, setActiveCategory] = useState("All");
@@ -23,7 +25,7 @@ export default function Catalog() {
 						<button
 							key={cat}
 							onClick={() => setActiveCategory(cat)}
-							className={`px-6 py-2 rounded-full font-medium transition ${activeCategory === cat ? "bg-emerald-600 text-white shadow-lg shadow-emerald-200" : "bg-white text-gray-600 hover:bg-gray-100 border border-gray-200"}`}
+							className={`cursor-pointer px-6 py-2 rounded-full font-medium transition ${activeCategory === cat ? "bg-emerald-600 text-white shadow-lg shadow-emerald-200" : "bg-white text-gray-600 hover:bg-gray-100 border border-gray-200"}`}
 						>
 							{cat}
 						</button>
@@ -33,7 +35,9 @@ export default function Catalog() {
 				{/* Product Grid */}
 				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
 					{filteredProducts.map((product) => (
-						<ProductCard name={product.name} id={product.id} image={product.image} desc={product.desc} price={product.price} tag={product.tag} key={product.id} />
+						<motion.div key={product.id} initial={{ y: 10, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: -10, opacity: 0 }} transition={{ duration: 0.5 }}>
+							<ProductCard name={product.name} id={product.id} image={product.image} desc={product.desc} price={product.price} tag={product.tag} />
+						</motion.div>
 					))}
 				</div>
 			</div>

@@ -16,13 +16,15 @@ export default function CartPage() {
 
 	const handleCreateOrder = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
+		if (items.length === 0) {
+			return showModal("Isi keranjang dulu");
+		}
 		const form = new FormData(e.currentTarget);
 		const nama = form.get("name") as string;
 		const alamat = form.get("alamat") as string;
 
-		const message = `${greetingTime()} kak, kenalin aku ${nama} mau pesan produk dari KueRaya dengan rincian berikut:\n-------------- ${items.map((item) => `\n- ${item.name} - ${item.qty} buah`)}\n--------------\nTotal jumlah barang: ${totalQty} buah\nTotal harga: ${formatRp(totalPrice)}(belum termasuk ongkir)\nKirim ke alamat ini: ${alamat}\nAtas perhatiannya terimakasih kak`;
+		const message = `${greetingTime()} kak, kenalin aku ${nama} mau pesan produk dari KueRaya dengan rincian berikut:\n-------------------- ${items.map((item) => `\n- ${item.name} - ${item.qty} buah`)}\n--------------------\nTotal jumlah barang: ${totalQty} buah\nTotal harga: ${formatRp(totalPrice)}(belum termasuk ongkir)\n--------------------\nKirim ke alamat ini: ${alamat}\nAtas perhatiannya terimakasih kak`;
 		const formattedNumber = number.replace(/\D/g, "");
-
 		const encodedMessage = encodeURIComponent(message);
 
 		const url = `https://wa.me/${formattedNumber}?text=${encodedMessage}`;

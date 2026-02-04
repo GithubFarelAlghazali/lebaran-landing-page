@@ -9,15 +9,17 @@ export default function CartButton() {
 	const isCartPage = usePathname() === "/cart";
 
 	return (
-		<Link href={isCartPage ? "/" : "/cart"} className="bg-emerald-900 text-white size-12 flex justify-center items-center rounded-full fixed bottom-5 right-5 md:hidden z-50">
+		<>
 			{!isCartPage ? (
-				<>
+				<Link href={isCartPage ? "/" : "/cart"} className="bg-emerald-900 text-white size-12 flex justify-center items-center rounded-full fixed bottom-5 right-5 md:hidden z-50">
 					<ShoppingCart size={20} />
 					{totalQty > 0 && <span className="absolute size-8 bg-red-500 flex justify-center items-center rounded-full -top-2 -right-2">{totalQty}</span>}
-				</>
+				</Link>
 			) : (
-				<X size={20} />
+				<button onClick={() => history.back()} className="bg-emerald-900 text-white size-12 flex justify-center items-center rounded-full fixed bottom-5 right-5 md:hidden z-50">
+					<X size={20} />
+				</button>
 			)}
-		</Link>
+		</>
 	);
 }

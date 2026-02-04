@@ -1,19 +1,39 @@
 import { Star, ChevronRight } from "lucide-react";
 import Link from "next/link";
+import * as motion from "motion/react-client";
 
 export default function Hero() {
+	const containerVariants = {
+		hidden: { opacity: 0 },
+		visible: {
+			opacity: 1,
+			transition: {
+				staggerChildren: 0.2,
+				delayChildren: 0.3,
+			},
+		},
+	};
+
+	const itemVariants = {
+		hidden: { opacity: 0, y: 20 },
+		visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+	};
+
 	return (
 		<header id="home" className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 px-6 bg-gradient-to-r from-yellow-50 to-orange-50 overflow-hidden">
 			<div className="container mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10">
-				{/* Text Content */}
-				<div className="space-y-6 text-center lg:text-left animate-fade-in-up">
-					<span className="inline-block px-4 py-2 bg-yellow-200 text-yellow-800 rounded-full text-sm font-bold tracking-wide uppercase mb-2">✨ Pre-Order Lebaran Dibuka</span>
-					<h1 className="text-5xl lg:text-7xl font-extrabold text-gray-900 leading-tight">
+				<motion.div className="space-y-6 text-center lg:text-left " variants={containerVariants} initial="hidden" animate="visible">
+					<motion.span variants={itemVariants} className="inline-block px-4 py-2 bg-yellow-200 text-yellow-800 rounded-full text-sm font-bold tracking-wide uppercase mb-2">
+						✨ Pre-Order Lebaran Dibuka
+					</motion.span>
+					<motion.h1 variants={itemVariants} className="text-5xl lg:text-7xl font-extrabold text-gray-900 leading-tight">
 						Sajian Manis <br />
 						<span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500">Hari Raya</span>
-					</h1>
-					<p className="text-lg text-gray-600 max-w-lg mx-auto lg:mx-0 leading-relaxed">Rayakan kemenangan dengan kelembutan kue kering premium. Dibuat dari bahan butter wisman asli dan resep warisan keluarga turun-temurun.</p>
-					<div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
+					</motion.h1>
+					<motion.p variants={itemVariants} className="text-lg text-gray-600 max-w-lg mx-auto lg:mx-0 leading-relaxed">
+						Rayakan kemenangan dengan kelembutan kue kering premium. Dibuat dari bahan butter wisman asli dan resep warisan keluarga turun-temurun.
+					</motion.p>
+					<motion.div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4" variants={itemVariants}>
 						<button className="bg-emerald-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-emerald-700 transition shadow-xl shadow-emerald-200 transform hover:-translate-y-1">Pesan Sekarang</button>
 						<Link
 							href={"/#catalog"}
@@ -21,7 +41,7 @@ export default function Hero() {
 						>
 							Lihat Katalog <ChevronRight size={20} />
 						</Link>
-					</div>
+					</motion.div>
 
 					{/* Trust Badges */}
 					<div className="flex items-center justify-center lg:justify-start gap-6 pt-6 text-sm font-medium text-gray-500">
@@ -35,7 +55,7 @@ export default function Hero() {
 							<div className="w-2 h-2 bg-green-500 rounded-full"></div> Butter Premium
 						</div>
 					</div>
-				</div>
+				</motion.div>
 
 				{/* Hero Image / Visual */}
 				<div className="relative">
