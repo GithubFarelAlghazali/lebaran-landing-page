@@ -4,7 +4,6 @@ import formatRp from "@/helper/formatRp";
 import Link from "next/link";
 import greetingTime from "@/helper/greetingTime";
 import { CircleMinus } from "lucide-react";
-import { FaWhatsapp } from "react-icons/fa";
 import Modal from "@/components/Modal";
 import { useModal } from "@/context/ModalContext";
 
@@ -57,9 +56,9 @@ export default function CartPage() {
 								></textarea>
 							</div>
 							<button type="submit" className="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-bold py-3 rounded-lg transition duration-200 shadow-md cursor-pointer flex justify-center items-center gap-2">
-								Pesan via WhatsApp
-								<FaWhatsapp size={20} />
+								Buat Pesanan
 							</button>
+							<p>Pesanan akan dikirim melalui nomor WhatsApp penjual</p>
 						</form>
 					</div>
 

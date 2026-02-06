@@ -8,6 +8,7 @@ import { useCart } from "@/context/CartContext";
 import { useRouter } from "next/navigation";
 import { useModal } from "@/context/ModalContext";
 import Modal from "@/components/Modal";
+import Image from "next/image";
 
 export default function DetailProduct() {
 	const { id } = useParams();
@@ -59,7 +60,7 @@ export default function DetailProduct() {
 			<main className=" md:px-16 lg:pt-20 flex lg:flex-row flex-col relative justify-between z-0">
 				<Modal />
 				<div className="lg:w-1/2 p-5 mt-20 lg:mt-0">
-					<img src={product.image} alt={product.name} className="w-[90%] rounded-2xl shadow-2xl -rotate-2 mx-auto aspect-square object-cover" />
+					<Image width={100} height={100} src={product.image} alt={product.name} className="w-[90%] rounded-2xl shadow-2xl -rotate-2 mx-auto aspect-square object-cover" />
 				</div>
 				<div className="relative p-10 lg:w-1/2">
 					<h1 className="md:text-5xl text-3xl font-semibold mb-5 text-emerald-900">{product.name}</h1>

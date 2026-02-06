@@ -59,7 +59,7 @@ export default function Navbar() {
 				</div>
 
 				{/* Mobile Menu Button */}
-				<button className="md:hidden text-gray-700" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+				<button id="open-menu" aria-label="open menu toggle" className="md:hidden text-gray-700" onClick={() => setIsMenuOpen(!isMenuOpen)}>
 					{isMenuOpen ? <X size={28} /> : <Menu size={28} />}
 				</button>
 			</div>
